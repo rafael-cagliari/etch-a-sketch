@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Etch-a-sketch</title>
+	<link rel="stylesheet" type="text/css" href="etch-a-sketch-top.css">
+</head>
+<body>
+<div id='container' class='rowsColumns'></div>
+
+<script>
+function makegrid(number_of_rows){
+blocks_made=0
+total_blocks = 16*number_of_rows
+while(blocks_made<total_blocks){
+
+const container = document.querySelector('#container');
+
+const grid = document.createElement('h1');
+grid.classList.add('div-grid');
+grid.setAttribute('id', 'grid'); 
+container.appendChild(grid);
+++blocks_made
+}
+}
+makegrid(16)
+
+container = document.querySelectorAll('.div-grid')
+
+// we use the .forEach method to iterate through each button
+container.forEach((grid) => {
+
+  // and for each one we add a 'click' listener
+  grid.addEventListener('mouseover', () => {
+    grid.style.backgroundColor='black';
+  });
+});
+</script>
+</body>
+</html>
