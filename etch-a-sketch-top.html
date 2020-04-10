@@ -5,29 +5,41 @@
 	<link rel="stylesheet" type="text/css" href="etch-a-sketch-top.css">
 </head>
 <body>
-<button id='btn' style="display:block; margin-left: auto; margin-right:auto;">Generate grid</button>
-<button id='btn2' style="display:block; margin-left: auto; margin-right:auto;">Black mode</button>
-<button id='btn3' style="display:block; margin-left: auto; margin-right:auto;">Rainbow mode</button>
-<button id='btn4' style="display:block; margin-left: auto; margin-right:auto;">Eraser</button>
+
+
+<div id='div_container' class='div1'>
+	<div id='buttons' class='top_grid'>
+<div class='title'>Etch-a-sketch!</div>
+<button id='btn' class="buttons">Generate grid</button>
+<button id='btn2' class="buttons">Black mode</button>
+<button id='btn3' class="buttons">Rainbow mode</button>
+<button id='btn4' class="buttons">Eraser</button>
+	</div>
+<div id='rest' class='bottom_grid'>	
 <script>
 
 makegrid_inicial()
 
-
+/*
+I would always need to start the function at the beggining of the code in order for it to work properly
+but starting the page with two prompts was not very elegant, so I remade the whole function with a fixed
+value for columns and rows
+*/
 function makegrid_inicial(){
+let parent_node = document.querySelector('#rest')
 let number_of_columns=8
 let number_of_rows=8
 let cont=document.createElement('div')
 cont.setAttribute('id', 'container')
-cont.style.cssText='padding-top: 55px;display: block;margin-left: auto; margin-right: auto; height: 550px; width: 550px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
+cont.style.cssText='background-color:#e2c7e8;display: block;margin-left: auto; margin-right: auto; height: 550px; width: 550px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
 
-document.body.appendChild(cont);
+parent_node.appendChild(cont);
 blocks_made=0
 total_blocks = number_of_columns*number_of_rows
 while(blocks_made<total_blocks){
 const container = document.querySelector('#container');
 
-const grid = document.createElement('h1');
+const grid = document.createElement('div');
 grid.classList.add('div-grid');
 grid.setAttribute('id', 'grid');
 cont.appendChild(grid);
@@ -37,19 +49,20 @@ cont.appendChild(grid);
 
 
 function makegrid(){
+let parent_node = document.querySelector('#rest')
 let number_of_columns=prompt('Please enter a number of columns:')
 let number_of_rows=prompt('Please enter a number of rows:')
 let cont=document.createElement('div')
 cont.setAttribute('id', 'container')
-cont.style.cssText='padding-top: 55px;display: block;margin-left: auto; margin-right: auto; height: 550px; width: 550px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
+cont.style.cssText='background-color:#e2c7e8;display: block;margin-left: auto; margin-right: auto; height: 550px; width: 550px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
 
-document.body.appendChild(cont);
+parent_node.appendChild(cont);
 blocks_made=0
 total_blocks = number_of_columns*number_of_rows
 while(blocks_made<total_blocks){
 const container = document.querySelector('#container');
 
-const grid = document.createElement('h1');
+const grid = document.createElement('div');
 grid.classList.add('div-grid');
 grid.setAttribute('id', 'grid');
 //grid.style.cssText='height: 60px; width: 60px;'
@@ -108,5 +121,7 @@ cont_erase.remove(); makegrid();
 });
 
 </script>
+</div>
+</div>
 </body>
 </html>
