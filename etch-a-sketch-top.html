@@ -5,25 +5,30 @@
 	<link rel="stylesheet" type="text/css" href="etch-a-sketch-top.css">
 </head>
 <body>
-<div id='container' class='rowsColumns'></div>
+<button id='btn'>Generate grid</button>
 
 <script>
-function makegrid(number_of_rows){
-blocks_made=0
-total_blocks = 16*number_of_rows
-while(blocks_made<total_blocks){
+makegrid()
 
+function makegrid(){
+let number_of_columns=prompt('Please enter a number of columns:')
+let number_of_rows=prompt('Please enter a number of rows:')
+let cont=document.createElement('div')
+cont.setAttribute('id', 'container')
+cont.style.cssText='height: 600px; width: 600px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
+document.body.appendChild(cont);
+blocks_made=0
+total_blocks = number_of_columns*number_of_rows
+while(blocks_made<total_blocks){
 const container = document.querySelector('#container');
 
 const grid = document.createElement('h1');
 grid.classList.add('div-grid');
-grid.setAttribute('id', 'grid'); 
-container.appendChild(grid);
+grid.setAttribute('id', 'grid');
+//grid.style.cssText='height: 60px; width: 60px;'
+cont.appendChild(grid);
 ++blocks_made
 }
-}
-makegrid(16)
-
 container = document.querySelectorAll('.div-grid')
 
 // we use the .forEach method to iterate through each button
@@ -31,9 +36,21 @@ container.forEach((grid) => {
 
   // and for each one we add a 'click' listener
   grid.addEventListener('mouseover', () => {
-    grid.style.backgroundColor='black';
+    grid.style.backgroundColor='#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
   });
 });
+}
+
+//pressing the button will create a new grid and delete the previous one
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', () => {
+  let cont = document.querySelector('#container');
+
+document.querySelector('#container').remove
+let cont_erase =document.querySelector('#container')
+cont_erase.remove(); makegrid();
+});
+
 </script>
 </body>
 </html>
