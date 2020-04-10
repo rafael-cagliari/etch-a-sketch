@@ -5,17 +5,44 @@
 	<link rel="stylesheet" type="text/css" href="etch-a-sketch-top.css">
 </head>
 <body>
-<button id='btn'>Generate grid</button>
-
+<button id='btn' style="display:block; margin-left: auto; margin-right:auto;">Generate grid</button>
+<button id='btn2' style="display:block; margin-left: auto; margin-right:auto;">Black mode</button>
+<button id='btn3' style="display:block; margin-left: auto; margin-right:auto;">Rainbow mode</button>
+<button id='btn4' style="display:block; margin-left: auto; margin-right:auto;">Eraser</button>
 <script>
-makegrid()
+
+makegrid_inicial()
+
+
+function makegrid_inicial(){
+let number_of_columns=8
+let number_of_rows=8
+let cont=document.createElement('div')
+cont.setAttribute('id', 'container')
+cont.style.cssText='padding-top: 55px;display: block;margin-left: auto; margin-right: auto; height: 550px; width: 550px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
+
+document.body.appendChild(cont);
+blocks_made=0
+total_blocks = number_of_columns*number_of_rows
+while(blocks_made<total_blocks){
+const container = document.querySelector('#container');
+
+const grid = document.createElement('h1');
+grid.classList.add('div-grid');
+grid.setAttribute('id', 'grid');
+cont.appendChild(grid);
+++blocks_made}
+
+}
+
 
 function makegrid(){
 let number_of_columns=prompt('Please enter a number of columns:')
 let number_of_rows=prompt('Please enter a number of rows:')
 let cont=document.createElement('div')
 cont.setAttribute('id', 'container')
-cont.style.cssText='height: 600px; width: 600px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
+cont.style.cssText='padding-top: 55px;display: block;margin-left: auto; margin-right: auto; height: 550px; width: 550px; display: grid; grid-template-columns:repeat('+number_of_columns+',1fr)'
+
 document.body.appendChild(cont);
 blocks_made=0
 total_blocks = number_of_columns*number_of_rows
@@ -29,19 +56,48 @@ grid.setAttribute('id', 'grid');
 cont.appendChild(grid);
 ++blocks_made
 }
-container = document.querySelectorAll('.div-grid')
 
-// we use the .forEach method to iterate through each button
+}
+
+
+function rainbow(){
+let container = document.querySelectorAll('.div-grid')
 container.forEach((grid) => {
-
-  // and for each one we add a 'click' listener
-  grid.addEventListener('mouseover', () => {
-    grid.style.backgroundColor='#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
-  });
+grid.addEventListener('mouseover', () => {
+grid.style.backgroundColor='#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+});
 });
 }
 
-//pressing the button will create a new grid and delete the previous one
+function black(){
+let container = document.querySelectorAll('.div-grid')
+container.forEach((grid) => {
+grid.addEventListener('mouseover', () => {
+grid.style.backgroundColor='black';
+});
+});
+}
+
+function eraser(){
+let container = document.querySelectorAll('.div-grid')
+container.forEach((grid) => {
+grid.addEventListener('mouseover', () => {
+grid.style.backgroundColor='white';
+});
+});
+}
+const btn_black = document.querySelector('#btn2');
+btn_black.addEventListener('click', () => {
+  black()});
+
+const btn_rainbow = document.querySelector('#btn3');
+btn_rainbow.addEventListener('click', () => {
+  rainbow()});
+
+const btn_eraser = document.querySelector('#btn4');
+btn_eraser.addEventListener('click', () => {
+  eraser()});
+
 const btn = document.querySelector('#btn');
 btn.addEventListener('click', () => {
   let cont = document.querySelector('#container');
